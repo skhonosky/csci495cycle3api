@@ -8,6 +8,7 @@ namespace PlayerApi.Services {
         public IEnumerable<Player> GetPlayers();
         public Player GetPlayersByName(string name);
         public IEnumerable<Player> GetPlayersBySport(string sport);
+        public IEnumerable<Player> GetPlayersByTeam(string team);
         public void CreatePlayer(Player p);
         public void UpdatePlayer(string name, Player p);
         public void DeletePlayer(string name);

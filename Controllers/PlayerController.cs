@@ -56,6 +56,16 @@ namespace PlayerApi.Controllers
                 return BadRequest();
         }
 
+        [HttpGet("team/{team}")]
+        public IActionResult GetPlayersByTeam(string team)
+        {
+            IEnumerable<Player> list = _service.GetPlayersByTeam(team);
+            if (list != null)
+                return Ok(list);
+            else
+                return BadRequest();
+        }
+
 
         [HttpPost]
         public IActionResult CreatePlayer(Player p) {

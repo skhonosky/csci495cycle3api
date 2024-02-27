@@ -27,7 +27,9 @@ namespace  PlayerApi.Services {
             return _repo.GetPlayersBySport(sport);
         }
 
-        
+        public IEnumerable<Player> GetPlayersByTeam(string team) {
+            return _repo.GetPlayersByTeam(team);
+        }
 
         public void CreatePlayer(Player p) {
             _repo.InsertPlayer(p);

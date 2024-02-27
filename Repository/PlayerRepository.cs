@@ -30,7 +30,7 @@ namespace PlayerApi.Repository {
             var command = new MySqlCommand(statement,_connection);
             var results = command.ExecuteReader();
 
-            List<Player> newList = new List<Player>(20);
+            List<Player> newList = new List<Player>(70);
 
             while(results.Read()){
                 Player p = new Player {
@@ -74,7 +74,30 @@ namespace PlayerApi.Repository {
             command.Parameters.AddWithValue("@newSport", sport);
 
             var results = command.ExecuteReader();
-            List<Player> newList = new List<Player>(20);
+            List<Player> newList = new List<Player>(60);
+
+            while(results.Read()){
+                Player p = new Player {
+                    Name = (string)results[0],
+                    Age = (int)results[1],
+                    Sport = (string)results[2],
+                    Team = (string)results[3],
+                    Position = (string)results[4]
+                };
+                newList.Add(p);
+            }
+            results.Close();
+            return newList;
+            
+        }
+
+        public IEnumerable<Player> GetPlayersByTeam(string team) {
+            var statement = "Select * From Players Where Team = @newTeam";
+            var command = new MySqlCommand(statement, _connection);
+            command.Parameters.AddWithValue("@newTeam", team);
+
+            var results = command.ExecuteReader();
+            List<Player> newList = new List<Player>(60);
 
             while(results.Read()){
                 Player p = new Player {
